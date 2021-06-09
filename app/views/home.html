@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% include '_libs.html' %}
+  <title>Agenda de contatos</title>
+</head>
+
+<body>
+  {% include '_header.html' %}
+
+  <div class="container my-5">
+
+    <label for="DataList" class="form-label">Buscar contatos</label>
+    <input class="form-control" list="datalistContatoOptions" id="DataList" placeholder="Buscar...">
+    <datalist id="datalistContatoOptions">
+      {% for contatos in CONTATOS %}
+      <option value="{{contatos.nome}}">
+        {% endfor %}
+    </datalist>
+
+    <div class="accordion mt-3" id="accordionContacts">
+      {% for contatos in CONTATOS %}
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="heading{{contatos.id}}">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapse{{contatos.id}}" aria-expanded="true" aria-controls="collapse{{contatos.id}}">
+            {{contatos.nome}}
+          </button>
+        </h2>
+        <div id="collapse{{contatos.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{contatos.id}}"
+          data-bs-parent="#accordionContacts">
+          <div class="accordion-body">
+            <div class="header-info">
+              <h5>Contato: </h5>
+              <div class="btn-actions">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal"
+                  data-bs-target="#editarContatoModal" onclick="selectContato({{contatos.cod}})"><i
+                    class="fas fa-edit"></i> Editar</button>
+
+                <button type="button" class="btn btn-sm btn-danger" onclick="deleteContato({{contatos.cod}})"><i
+                    class="fas fa-trash"></i> Excluir</button>
+              </div>
+            </div>
+            <hr />
+            <div class="my-3">
+              <p>Email: {{contatos.email}}</p>
+              <p>Grupo: {{contatos.grupo}}</p>
+            </div>
+            <div class="header-info">
+              <h5>Endereços: </h5>
+              <div class="btn-actions">
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
+                  data-bs-target="#novoEnderecoModal" onclick="passarCod('codEndModal', {{contatos.cod}})"><i
+                    class="fas fa-plus"></i> Adicionar</button>
+              </div>
+            </div>
+            <hr />
+
+            <div class="row my-3">
+
+              {% for enderecos in ENDERECOS %}
+              {% if contatos.cod == enderecos.contato_cod %}
+              <div class="col-xs-12 col-sm-6 col-lg-3 my-2">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{enderecos.end_descricao}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{enderecos.logradouro}}, {{enderecos.numero}}</h6>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editarEnderecoModal" onclick="selectEndereco({{enderecos.id}})" title="Editar Endereço"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteEndereco({{enderecos.id}})" title="Excluir Endereço"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              {% endif %}
+              {% endfor %}
+            </div>
+            <div class="header-info">
+              <h5>Telefones: </h5>
+              <div class="btn-actions">
+                <button type="button" class="btn btn-sm btn-success" data-bs-toggle="modal"
+                  data-bs-target="#novoTelefoneModal" onclick="passarCod('codTelModal', {{contatos.cod}})"><i
+                    class="fas fa-plus"></i> Adicionar</button>
+              </div>
+            </div>
+            <hr />
+            <div class="row my-3">
+              {% for telefones in TELEFONES %}
+              {% if contatos.cod == telefones.contato_cod %}
+
+              <div class="col-xs-12 col-sm-6 col-lg-3 my-2">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{telefones.tel_descricao}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{telefones.numero_telefone}}</h6>
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editarTelefoneModal" onclick="selectTelefone({{telefones.id}})" title="Editar Telefone"><i class="fas fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="deleteTelefone({{telefones.id}})" title="Excluir Telefone"><i class="fas fa-trash"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+
+  {% include 'modals/novo-contato-modal.html' %}
+  {% include 'modals/editar-contato-modal.html' %}
+  {% include 'modals/novo-endereco-modal.html' %}
+  {% include 'modals/novo-telefone-modal.html' %}
+  {% include 'modals/editar-endereco-modal.html' %}
+  {% include 'modals/editar-telefone-modal.html' %}
+
+  <script src="{{RAIZ}}/resources/jquery/jquery-3.6.0.min.js"></script>
+  <script src="{{RAIZ}}/app/ajax/js/functions.js"></script>
+  <script src="{{RAIZ}}/vendor/twitter/bootstrap/dist/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

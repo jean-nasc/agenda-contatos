@@ -1,0 +1,13 @@
+<nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand">Agenda</a>
+      {% if USUARIO.nome != null %}
+      <div>
+      <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#novoContatoModal">
+        Novo contato
+      </button>
+      <a href="{{PAG_LOGOFF}}" class="btn btn-sm btn-secondary">Sair</a>
+    </div>
+      {% endif %}
+    </div>
+  </nav>

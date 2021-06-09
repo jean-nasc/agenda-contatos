@@ -1,0 +1,46 @@
+<div class="modal fade" id="editarEnderecoModal" tabindex="-1" aria-labelledby="editarEnderecoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarEnderecoModalLabel">Editar endereço</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST">
+          <div class="modal-body">
+            <input type="hidden" id="codEndModalEdit" />
+
+            <div class="form-group">
+              <label for="cepInputEnderecoModalEdit">Cep:</label>
+              <input type="text" class="form-control" id="cepInputEnderecoModalEdit" onchange="buscarCep('EnderecoModalEdit')" required>
+
+              <label for="logradouroInputEnderecoModalEdit">Logradouro:</label>
+              <input type="text" class="form-control" id="logradouroInputEnderecoModalEdit" required>
+
+              <label for="complementoInputEnderecoModalEdit">Complemento:</label>
+              <input type="text" class="form-control" id="complementoInputEnderecoModalEdit">
+
+              <label for="numeroInputEnderecoModalEdit">Número:</label>
+              <input type="text" class="form-control" id="numeroInputEnderecoModalEdit" required>
+
+              <label for="bairroInputEnderecoModalEdit">Bairro:</label>
+              <input type="text" class="form-control" id="bairroInputEnderecoModalEdit" required>
+
+              <label for="cidadeInputEnderecoModalEdit">Cidade:</label>
+              <input type="text" class="form-control" id="cidadeInputEnderecoModalEdit" required>
+
+              <label for="estadoInputEnderecoModalEdit">Estado:</label>
+              <input type="text" class="form-control" id="estadoInputEnderecoModalEdit" required>
+
+              <label for="endDescricaoInputEnderecoModalEdit">Descrição:</label>
+              <input type="text" class="form-control" id="endDescricaoInputEnderecoModalEdit" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" onclick="updateEndereco()">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

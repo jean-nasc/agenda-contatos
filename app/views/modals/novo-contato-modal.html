@@ -1,0 +1,75 @@
+<div class="modal fade" id="novoContatoModal" tabindex="-1" aria-labelledby="novoContatoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="novoContatoModalLabel">Novo contato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST">
+          <div class="modal-body">
+
+            <h5>Contato</h5>
+            <hr />
+            <div class="form-group mb-3">
+              <label for="nomeInput">Nome:</label>
+              <input type="text" class="form-control" id="nomeInput" required>
+
+              <label for="emailInput">E-mail:</label>
+              <input type="email" class="form-control" id="emailInput" required>
+
+              <label for="grupoInput">Grupo:</label>
+              <input class="form-control" list="datalistGrupoOptions" id="grupoInput" required>
+              <datalist id="datalistGrupoOptions">
+                {% for grupos in GRUPOS %}
+                <option value="{{grupos.nome_grupo}}">
+                  {% endfor %}
+              </datalist>
+            </div>
+
+            <h5>Telefone</h5>
+            <hr />
+            <div class="form-group mb-3">
+              <label for="telefoneInput">Telefone:</label>
+              <input type="text" class="form-control" id="telefoneInput" required>
+
+              <label for="telDescricaoInput">Descrição:</label>
+              <input type="text" class="form-control" id="telDescricaoInput" required>
+            </div>
+
+            <h5>Endereço</h5>
+            <hr />
+            <div class="form-group">
+              <label for="cepInput">Cep:</label>
+              <input type="text" class="form-control" id="cepInput" onchange="buscarCep()" required>
+
+              <label for="logradouroInput">Logradouro:</label>
+              <input type="text" class="form-control" id="logradouroInput" required>
+
+              <label for="complementoInput">Complemento:</label>
+              <input type="text" class="form-control" id="complementoInput">
+
+              <label for="numeroInput">Número:</label>
+              <input type="text" class="form-control" id="numeroInput" required>
+
+              <label for="bairroInput">Bairro:</label>
+              <input type="text" class="form-control" id="bairroInput" required>
+
+              <label for="cidadeInput">Cidade:</label>
+              <input type="text" class="form-control" id="cidadeInput" required>
+
+              <label for="estadoInput">Estado:</label>
+              <input type="text" class="form-control" id="estadoInput" required>
+
+              <label for="endDescricaoInput">Descrição:</label>
+              <input type="text" class="form-control" id="endDescricaoInput" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" onclick="createContato()">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

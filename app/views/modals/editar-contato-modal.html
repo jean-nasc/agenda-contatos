@@ -1,0 +1,36 @@
+<div class="modal fade" id="editarContatoModal" tabindex="-1" aria-labelledby="editarContatoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarContatoModalLabel">Editar contato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST">
+          <div class="modal-body">
+            <input type="hidden" id="codModal" />
+
+            <div class="form-group mb-3">
+              <label for="nomeInputContatoModal">Nome:</label>
+              <input type="text" class="form-control" id="nomeInputContatoModal" required>
+
+              <label for="emailInputContatoModal">E-mail:</label>
+              <input type="email" class="form-control" id="emailInputContatoModal" required>
+
+              <label for="grupoInputContatoModal">Grupo:</label>
+              <input class="form-control" list="datalistGrupoOptions" id="grupoInputContatoModal" required>
+              <datalist id="datalistGrupoOptions">
+                {% for grupos in GRUPOS %}
+                <option value="{{grupos.nome_grupo}}">
+                  {% endfor %}
+              </datalist>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+              <button type="button" class="btn btn-primary" onclick="updateContato()">Salvar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

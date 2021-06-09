@@ -1,0 +1,28 @@
+<div class="modal fade" id="editarTelefoneModal" tabindex="-1" aria-labelledby="editarTelefoneModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarTelefoneModalLabel">Editar telefone</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="POST">
+          <div class="modal-body">
+            <input type="hidden" id="codTelModalEdit" />
+
+            <div class="form-group mb-3">
+              <label for="telefoneInputTelefoneModalEdit">Telefone:</label>
+              <input type="text" class="form-control" id="telefoneInputTelefoneModalEdit" required>
+
+              <label for="telDescricaoInputTelefoneModalEdit">Descrição:</label>
+              <input type="text" class="form-control" id="telDescricaoInputTelefoneModalEdit" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" onclick="updateTelefone()">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
